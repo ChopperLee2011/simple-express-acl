@@ -152,3 +152,4 @@ class ACL {
 
 const aclInstance = new ACL()
 export default aclInstance
+module.exports = exports.default
