@@ -71,12 +71,13 @@ class ACL {
     }
 
     makeResource(req) {
+        let _url
         if (!acl.prefix) {
-            return (_.toLower( _.trim(req.baseUrl, '/') )) || '/'
+          _url = req.path
         } else {
-            let _baseUrl = (_.toLower( _.trim(req.baseUrl, '/') )) || '/'
-            return _.trimStart(_baseUrl, acl.prefix)
+          _url = _.trimStart(req.path,acl.prefix)
         }
+        return _.toLower(_.trim((_url.split('/')[1]))) || '/'
     }
 
     roleAccess(resource, method) {
